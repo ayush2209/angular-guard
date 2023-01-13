@@ -1,0 +1,52 @@
+<div class="col">
+    <div class="">
+        <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="mt-2 rounded onHover"
+            style="font-family: Calibri, sans-serif; color: #FFFFFF" bgcolor="#00224f" scrolldelay="75" behavior="loop">
+            <span *ngFor="let newsData of newsResponseData">
+                {{newsData.title}} {{' | '}}
+            </span>
+        </marquee>
+    </div>
+    <div class="mt-2">
+        <nav class="navbar bg-light rounded">
+            <div class="container-fluid">
+                <a>{{newsType | uppercase}}</a>
+                <div class="d-flex">
+                    <!-- <div class="btn-group dropleft"> -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle btn-info" type="button" id="dropdownMenu2"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Select News type
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+                            <li><button class="dropdown-item" type="button"
+                                    (click)="getNewsData('business')">Business</button></li>
+                            <li><button class="dropdown-item" type="button"
+                                    (click)="getNewsData('sports')">Sport</button></li>
+                            <li><button class="dropdown-item" type="button"
+                                    (click)="getNewsData('entertainment')">Entertainment</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- style="top: 110px;position: relative;" -->
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col col-lg-4 mb-3 d-flex align-items-stretch" *ngFor="let newsData of newsResponseData">
+                <div class="card">
+                    <img src="{{newsData.urlToImage}}" loading="lazy" class="img-fluid card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{newsData.title}}</h5>
+                        <p class="card-text">{{newsData.description}}</p>
+                        <a href="{{newsData.url}}" target="_blank">Read more...</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated {{newsData.publishedAt}} mins ago </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
