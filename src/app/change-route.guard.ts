@@ -11,7 +11,7 @@ export class ChangeRouteGuard implements CanDeactivate<FirstComponent> {
 
     if (component.hasUnsavedData()) {
       if (confirm("You have unsaved changes! If you leave, your changes will be lost.")) {
-        return false
+        return true;
       } else {
         return false;
       }
